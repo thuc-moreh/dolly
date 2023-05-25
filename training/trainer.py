@@ -30,7 +30,7 @@ from transformers import (
     set_seed,
 )
 
-from .consts import (
+from consts import (
     DEFAULT_INPUT_MODEL,
     DEFAULT_SEED,
     PROMPT_WITH_INPUT_FORMAT,
@@ -287,19 +287,19 @@ def train(
 
 @click.command()
 @click.option("--input-model", type=str, help="Input model to fine tune", default=DEFAULT_INPUT_MODEL)
-@click.option("--local-output-dir", type=str, help="Write directly to this local path", required=True)
+@click.option("--local-output-dir", type=str, default="output", help="Write directly to this local path", required=True)
 @click.option("--dbfs-output-dir", type=str, help="Sync data to this path on DBFS")
 @click.option("--epochs", type=int, default=3, help="Number of epochs to train for.")
-@click.option("--per-device-train-batch-size", type=int, default=8, help="Batch size to use for training.")
-@click.option("--per-device-eval-batch-size", type=int, default=8, help="Batch size to use for evaluation.")
+@click.option("--per-device-train-batch-size", type=int, default=32, help="Batch size to use for training.")
+@click.option("--per-device-eval-batch-size", type=int, default=32, help="Batch size to use for evaluation.")
 @click.option(
     "--test-size", type=int, default=1000, help="Number of test records for evaluation, or ratio of test records."
 )
-@click.option("--warmup-steps", type=int, default=None, help="Number of steps to warm up to learning rate")
+@click.option("--warmup-steps", type=int, default=0, help="Number of steps to warm up to learning rate")
 @click.option("--logging-steps", type=int, default=10, help="How often to log")
 @click.option("--eval-steps", type=int, default=50, help="How often to run evaluation on test records")
 @click.option("--save-steps", type=int, default=400, help="How often to checkpoint the model")
-@click.option("--save-total-limit", type=int, default=10, help="Maximum number of checkpoints to keep on disk")
+@click.option("--save-total-limit", type=int, default=1, help="Maximum number of checkpoints to keep on disk")
 @click.option("--lr", type=float, default=1e-5, help="Learning rate to use for training.")
 @click.option("--seed", type=int, default=DEFAULT_SEED, help="Seed to use for training.")
 @click.option("--deepspeed", type=str, default=None, help="Path to deepspeed config file.")
@@ -309,14 +309,14 @@ def train(
     is_flag=True,
     default=True,
     help="Use gradient checkpointing?",
-)
+) #Disable checkpointing by default because this version of Moreh doesn't support it.
 @click.option(
     "--local_rank",
     type=str,
     default=True,
     help="Provided by deepspeed to identify which instance this process is when performing multi-GPU training.",
 )
-@click.option("--bf16", type=bool, default=True, help="Whether to use bf16 (preferred on A100's).")
+@click.option("--bf16", type=bool, default=False, help="Whether to use bf16 (preferred on A100's).")
 def main(**kwargs):
     train(**kwargs)
 
