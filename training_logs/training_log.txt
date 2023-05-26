@@ -1,44 +1,63 @@
-[2023-05-25 14:51:11.972] [info] Requesting resources for KT AI Accelerator from the server...
-[2023-05-25 14:51:12.988] [warning] A newer version of Moreh AI Framework is available. You can update the software to the latest version by running "update-moreh".
-[2023-05-25 14:51:12.988] [info] Initializing the worker daemon for KT AI Accelerator
-[2023-05-25 14:51:16.692] [info] [1/1] Connecting to resources on the server (192.168.110.18:24171)...
-[2023-05-25 14:51:16.705] [info] Establishing links to the resources...
-[2023-05-25 14:51:16.850] [info] KT AI Accelerator is ready to use.
+(dolly) ubuntu@moreh-2004-vm08:/nas/thuchk/repos/dolly$ python training/trainer.py
+[2023-05-26 13:36:43.316] [info] Requesting resources for KT AI Accelerator from the server...
+[2023-05-26 13:36:44.331] [info] Initializing the worker daemon for KT AI Accelerator
+[2023-05-26 13:36:49.179] [info] [1/8] Connecting to resources on the server (192.168.110.1:24160)...
+[2023-05-26 13:36:49.190] [info] [2/8] Connecting to resources on the server (192.168.110.2:24171)...
+[2023-05-26 13:36:49.196] [info] [3/8] Connecting to resources on the server (192.168.110.4:24169)...
+[2023-05-26 13:36:49.202] [info] [4/8] Connecting to resources on the server (192.168.110.27:24164)...
+[2023-05-26 13:36:49.209] [info] [5/8] Connecting to resources on the server (192.168.110.28:24170)...
+[2023-05-26 13:36:49.215] [info] [6/8] Connecting to resources on the server (192.168.110.29:24164)...
+[2023-05-26 13:36:49.221] [info] [7/8] Connecting to resources on the server (192.168.110.79:24173)...
+[2023-05-26 13:36:49.227] [info] [8/8] Connecting to resources on the server (192.168.110.81:24162)...
+[2023-05-26 13:36:49.234] [info] Establishing links to the resources...
+[2023-05-26 13:36:49.670] [info] KT AI Accelerator is ready to use.
+2023-05-26 13:36:49 INFO [__main__] Loading tokenizer for databricks/dolly-v2-3b
+2023-05-26 13:36:49 INFO [__main__] Loading model for databricks/dolly-v2-3b
+2023-05-26 13:37:27 INFO [__main__] Found max lenth: 1024
+2023-05-26 13:37:27 INFO [__main__] Loading dataset from databricks/databricks-dolly-15k
+2023-05-26 13:37:29 WARNING [datasets.builder] Found cached dataset json (/nas/common_data/huggingface/databricks___
+json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f7
+2e276c2e4)
+2023-05-26 13:37:29 INFO [__main__] Found 150 rows
+2023-05-26 13:37:29 WARNING [datasets.arrow_dataset] Loading cached processed dataset at /nas/common_data/huggingfac
+e/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27
+e842dd53157d2f72e276c2e4/cache-951ee09a1cec13a5.arrow
+2023-05-26 13:37:29 INFO [__main__] Preprocessing dataset
+2023-05-26 13:37:29 INFO [__main__] Processed dataset has 150 rows
+2023-05-26 13:37:29 INFO [__main__] Processed dataset has 146 rows after filtering for truncated records
+2023-05-26 13:37:29 INFO [__main__] Shuffling dataset
+2023-05-26 13:37:29 INFO [__main__] Done preprocessing
+2023-05-26 13:37:29 INFO [__main__] Train data size: 136
+2023-05-26 13:37:29 INFO [__main__] Test data size: 10
+2023-05-26 13:37:29 WARNING [__main__] Will NOT save to DBFS
+2023-05-26 13:37:29 INFO [__main__] Instantiating Trainer
+2023-05-26 13:37:34 INFO [__main__] Training
+  0%|                                                                                       | 0/136 [00:00<?, ?it/s]
+You're using a GPTNeoXTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method i
+s faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+{'loss': 1.4863, 'learning_rate': 9.264705882352942e-06, 'epoch': 0.07}
+{'loss': 1.0565, 'learning_rate': 8.529411764705883e-06, 'epoch': 0.15}
+{'loss': 0.9276, 'learning_rate': 7.794117647058825e-06, 'epoch': 0.22}
+{'loss': 1.357, 'learning_rate': 7.058823529411766e-06, 'epoch': 0.29}
+{'loss': 1.0963, 'learning_rate': 6.323529411764706e-06, 'epoch': 0.37}
+{'eval_loss': 1.3903285264968872, 'eval_runtime': 41.6334, 'eval_samples_per_second': 0.24, 'eval_steps_per_second':
+ 0.24, 'epoch': 0.37}
+{'loss': 0.8342, 'learning_rate': 5.588235294117647e-06, 'epoch': 0.44}
+{'loss': 1.1829, 'learning_rate': 4.852941176470589e-06, 'epoch': 0.51}
+{'loss': 1.2392, 'learning_rate': 4.11764705882353e-06, 'epoch': 0.59}
+{'loss': 0.8995, 'learning_rate': 3.382352941176471e-06, 'epoch': 0.66}
+{'loss': 1.1474, 'learning_rate': 2.647058823529412e-06, 'epoch': 0.74}
+{'eval_loss': 1.353415608406067, 'eval_runtime': 42.896, 'eval_samples_per_second': 0.233, 'eval_steps_per_second':
+0.233, 'epoch': 0.74}
+{'loss': 0.7874, 'learning_rate': 1.9117647058823528e-06, 'epoch': 0.81}
+{'loss': 1.125, 'learning_rate': 1.1764705882352942e-06, 'epoch': 0.88}
+{'loss': 0.999, 'learning_rate': 4.4117647058823536e-07, 'epoch': 0.96}
+{'train_runtime': 1460.9885, 'train_samples_per_second': 0.093, 'train_steps_per_second': 0.093, 'train_loss': 1.110
+3238568586462, 'epoch': 1.0}
+100%|█████████████████████████████████████████████████████████████████████████████| 136/136 [24:20<00:00, 10.74s/it]
+Training took 1461.0207529067993 seconds
+2023-05-26 14:01:55 INFO [__main__] Saving Model to output
+2023-05-26 14:02:51 INFO [__main__] Done.
+(dolly) ubuntu@moreh-2004-vm08:/nas/thuchk/repos/dolly$ bash train.sh^C
+(dolly) ubuntu@moreh-2004-vm08:/nas/thuchk/repos/dolly$ tmux capture-pane -pS -300 > training_logs.txt
 
-python training/trainer.py
-[2023-05-26 11:40:06.359] [info] Requesting resources for KT AI Accelerator from the server...
-[2023-05-26 11:40:07.380] [info] Initializing the worker daemon for KT AI Accelerator
-[2023-05-26 11:40:11.652] [info] [1/2] Connecting to resources on the server (192.168.110.22:24168)...
-[2023-05-26 11:40:11.667] [info] [2/2] Connecting to resources on the server (192.168.110.25:24161)...
-[2023-05-26 11:40:11.675] [info] Establishing links to the resources...
-[2023-05-26 11:40:11.801] [info] KT AI Accelerator is ready to use.
-2023-05-26 11:40:11 INFO [__main__] Loading tokenizer for databricks/dolly-v2-3b
-2023-05-26 11:40:12 INFO [__main__] Loading model for databricks/dolly-v2-3b
-2023-05-26 11:40:47 INFO [__main__] Found max lenth: 2048
-2023-05-26 11:40:47 INFO [__main__] Loading dataset from databricks/databricks-dolly-15k
-2023-05-26 11:40:49 WARNING [datasets.builder] Found cached dataset json (/nas/common_data/huggingface/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
-2023-05-26 11:40:49 INFO [__main__] Found 150 rows
-2023-05-26 11:40:49 WARNING [datasets.arrow_dataset] Loading cached processed dataset at /nas/common_data/huggingface/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-951ee09a1cec13a5.arrow
-2023-05-26 11:40:49 INFO [__main__] Preprocessing dataset
-2023-05-26 11:40:49 WARNING [datasets.arrow_dataset] Loading cached processed dataset at /nas/common_data/huggingface/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-811a0824a36fdb48.arrow
-2023-05-26 11:40:49 INFO [__main__] Processed dataset has 150 rows
-2023-05-26 11:40:49 WARNING [datasets.arrow_dataset] Loading cached processed dataset at /nas/common_data/huggingface/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-748920448fa0c772.arrow
-2023-05-26 11:40:49 INFO [__main__] Processed dataset has 150 rows after filtering for truncated records
-2023-05-26 11:40:49 INFO [__main__] Shuffling dataset
-2023-05-26 11:40:49 WARNING [datasets.arrow_dataset] Loading cached shuffled indices for dataset at /nas/common_data/huggingface/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-ba7f38e32ba70245.arrow
-2023-05-26 11:40:49 INFO [__main__] Done preprocessing
-2023-05-26 11:40:49 WARNING [datasets.arrow_dataset] Loading cached split indices for dataset at /nas/common_data/huggingface/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-8c057e78c23e6e41.arrow and /nas/common_data/huggingface/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-317a904bba5ccb85.arrow
-2023-05-26 11:40:49 INFO [__main__] Train data size: 140
-2023-05-26 11:40:49 INFO [__main__] Test data size: 10
-2023-05-26 11:40:49 WARNING [__main__] Will NOT save to DBFS
-2023-05-26 11:40:49 INFO [__main__] Instantiating Trainer
-2023-05-26 11:40:54 INFO [__main__] Training
-You're using a GPTNeoXTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
-{'loss': 1.0962, 'learning_rate': 9.285714285714288e-06, 'epoch': 0.07}
-{'loss': 1.3366, 'learning_rate': 8.571428571428571e-06, 'epoch': 0.14}
-{'loss': 1.0792, 'learning_rate': 7.857142857142858e-06, 'epoch': 0.21}
-{'loss': 0.8323, 'learning_rate': 7.1428571428571436e-06, 'epoch': 0.29}
-[2023-05-26 11:43:47.917] [error] KT AI Accelerator (#0) received an invalid request from the application.
-Error message: device1 error occurred : "KT AI Accelerator memory not enough. Try increasing KT AI Accelerator size or decreasing batch size."
-[1685069028.234527] [moreh-2004-vm08:709024:0]         tcp_ep.c:1042 UCX  ERROR tcp_ep 0x7fcfa80431d0 (state=CONNECTED): recv(48) failed: Connection reset by remote peer
-/arrow/cpp/src/arrow/filesystem/s3fs.cc:2598:  arrow::fs::FinalizeS3 was not called even though S3 was initialized.  This could lead to a segmentation fault at exit

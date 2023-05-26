@@ -214,6 +214,7 @@ def train(
     max_length = None
     for length_setting in ["n_positions", "max_position_embeddings", "seq_length"]:
         max_length = getattr(model.config, length_setting, None)
+        max_length = 1024
         if max_length:
             logger.info(f"Found max lenth: {max_length}")
             break
@@ -255,7 +256,7 @@ def train(
         save_total_limit=save_total_limit,
         load_best_model_at_end=False,
         report_to="tensorboard",
-        disable_tqdm=True,
+        disable_tqdm=False,
         remove_unused_columns=False,
         local_rank=local_rank,
         warmup_steps=warmup_steps,
@@ -273,7 +274,15 @@ def train(
     )
 
     logger.info("Training")
-    trainer.train()
+    import time
+    start_time = time.time()
+    try:
+        trainer.train()
+    except:
+        print(f"Training took {time.time() - start_time} seconds")
+
+    print(f"Training took {time.time() - start_time} seconds")
+
 
     logger.info(f"Saving Model to {local_output_dir}")
     trainer.save_model(output_dir=local_output_dir)
