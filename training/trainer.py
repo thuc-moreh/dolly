@@ -87,7 +87,7 @@ def preprocess_batch(batch: Dict[str, List], tokenizer: AutoTokenizer, max_lengt
 
 def load_training_dataset(path_or_dataset: str = DEFAULT_TRAINING_DATASET) -> Dataset:
     logger.info(f"Loading dataset from {path_or_dataset}")
-    dataset = load_dataset(path_or_dataset)["train"]
+    dataset = load_dataset(path_or_dataset, split = "train[:1%]")
     logger.info("Found %d rows", dataset.num_rows)
 
     def _add_text(rec):
@@ -289,16 +289,16 @@ def train(
 @click.option("--input-model", type=str, help="Input model to fine tune", default=DEFAULT_INPUT_MODEL)
 @click.option("--local-output-dir", type=str, default="output", help="Write directly to this local path", required=True)
 @click.option("--dbfs-output-dir", type=str, help="Sync data to this path on DBFS")
-@click.option("--epochs", type=int, default=3, help="Number of epochs to train for.")
-@click.option("--per-device-train-batch-size", type=int, default=32, help="Batch size to use for training.")
-@click.option("--per-device-eval-batch-size", type=int, default=32, help="Batch size to use for evaluation.")
+@click.option("--epochs", type=int, default=1, help="Number of epochs to train for.")
+@click.option("--per-device-train-batch-size", type=int, default=1, help="Batch size to use for training.")
+@click.option("--per-device-eval-batch-size", type=int, default=1, help="Batch size to use for evaluation.")
 @click.option(
-    "--test-size", type=int, default=1000, help="Number of test records for evaluation, or ratio of test records."
+    "--test-size", type=int, default=10, help="Number of test records for evaluation, or ratio of test records."
 )
 @click.option("--warmup-steps", type=int, default=0, help="Number of steps to warm up to learning rate")
 @click.option("--logging-steps", type=int, default=10, help="How often to log")
 @click.option("--eval-steps", type=int, default=50, help="How often to run evaluation on test records")
-@click.option("--save-steps", type=int, default=400, help="How often to checkpoint the model")
+@click.option("--save-steps", type=int, default=100, help="How often to checkpoint the model")
 @click.option("--save-total-limit", type=int, default=1, help="Maximum number of checkpoints to keep on disk")
 @click.option("--lr", type=float, default=1e-5, help="Learning rate to use for training.")
 @click.option("--seed", type=int, default=DEFAULT_SEED, help="Seed to use for training.")
@@ -307,7 +307,7 @@ def train(
 @click.option(
     "--gradient-checkpointing/--no-gradient-checkpointing",
     is_flag=True,
-    default=True,
+    default=False,
     help="Use gradient checkpointing?",
 ) #Disable checkpointing by default because this version of Moreh doesn't support it.
 @click.option(
