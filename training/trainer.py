@@ -255,7 +255,7 @@ def train(
         save_total_limit=save_total_limit,
         load_best_model_at_end=False,
         report_to="tensorboard",
-        disable_tqdm=True,
+        disable_tqdm=False,
         remove_unused_columns=False,
         local_rank=local_rank,
         warmup_steps=warmup_steps,
@@ -307,16 +307,17 @@ def train(
 @click.option(
     "--gradient-checkpointing/--no-gradient-checkpointing",
     is_flag=True,
-    default=False,
+    default=True,
     help="Use gradient checkpointing?",
-) #Disable checkpointing by default because this version of Moreh doesn't support it.
+) #have to use checkpointing by default because OOM on nvidia A100.
 @click.option(
     "--local_rank",
     type=str,
     default=True,
     help="Provided by deepspeed to identify which instance this process is when performing multi-GPU training.",
 )
-@click.option("--bf16", type=bool, default=False, help="Whether to use bf16 (preferred on A100's).")
+@click.option("--bf16", type=bool, default=True, help="Whether to use bf16 (preferred on A100's).")
+#have to use bf16 by default because OOM on nvidia A100.
 def main(**kwargs):
     train(**kwargs)
 

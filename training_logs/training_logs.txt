@@ -1,0 +1,114 @@
+
+(dolly) ubuntu@haca1003:/nas/thuchk/dolly$ python training/trainer.py
+2023-05-26 03:21:08 INFO [__main__] Loading tokenizer for databricks/dolly-v2-3b
+2023-05-26 03:21:09 INFO [__main__] Loading model for databricks/dolly-v2-3b
+2023-05-26 03:21:39 INFO [__main__] Found max lenth: 2048
+2023-05-26 03:21:39 INFO [__main__] Loading dataset from databricks/databricks-dolly-15k
+2023-05-26 03:21:41 WARNING [datasets.builder] Found cached dataset json (/nas/common_data/huggingface/databricks___
+json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f7
+2e276c2e4)
+2023-05-26 03:21:41 INFO [__main__] Found 150 rows
+2023-05-26 03:21:41 WARNING [datasets.arrow_dataset] Loading cached processed dataset at /nas/common_data/huggingfac
+e/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27
+e842dd53157d2f72e276c2e4/cache-951ee09a1cec13a5.arrow
+2023-05-26 03:21:41 INFO [__main__] Preprocessing dataset
+2023-05-26 03:21:41 WARNING [datasets.arrow_dataset] Loading cached processed dataset at /nas/common_data/huggingfac
+e/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27
+e842dd53157d2f72e276c2e4/cache-811a0824a36fdb48.arrow
+2023-05-26 03:21:41 INFO [__main__] Processed dataset has 150 rows
+2023-05-26 03:21:41 WARNING [datasets.arrow_dataset] Loading cached processed dataset at /nas/common_data/huggingfac
+e/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27
+e842dd53157d2f72e276c2e4/cache-748920448fa0c772.arrow
+2023-05-26 03:21:41 INFO [__main__] Processed dataset has 150 rows after filtering for truncated records
+2023-05-26 03:21:41 INFO [__main__] Shuffling dataset
+2023-05-26 03:21:41 WARNING [datasets.arrow_dataset] Loading cached shuffled indices for dataset at /nas/common_data
+/huggingface/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f9491
+05a4dd28b27e842dd53157d2f72e276c2e4/cache-ba7f38e32ba70245.arrow
+2023-05-26 03:21:41 INFO [__main__] Done preprocessing
+2023-05-26 03:21:41 WARNING [datasets.arrow_dataset] Loading cached split indices for dataset at /nas/common_data/hu
+ggingface/databricks___json/databricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a
+4dd28b27e842dd53157d2f72e276c2e4/cache-8c057e78c23e6e41.arrow and /nas/common_data/huggingface/databricks___json/dat
+abricks--databricks-dolly-15k-6e0f9ea7eaa0ee08/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e
+4/cache-317a904bba5ccb85.arrow
+2023-05-26 03:21:41 INFO [__main__] Train data size: 140
+2023-05-26 03:21:41 INFO [__main__] Test data size: 10
+training/trainer.py:236: DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
+  logger.warn("Will NOT save to DBFS")
+2023-05-26 03:21:41 WARNING [__main__] Will NOT save to DBFS
+2023-05-26 03:21:41 INFO [__main__] Instantiating Trainer
+2023-05-26 03:21:46 INFO [__main__] Training
+/nas/.conda/envs/dolly/lib/python3.8/site-packages/transformers/optimization.py:407: FutureWarning: This implementat
+ion of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW
+ instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+  0%|                                                                                       | 0/140 [00:00<?, ?it/s]
+You're using a GPTNeoXTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method i
+s faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+2023-05-26 03:21:48 ERROR [__main__] main failed
+Traceback (most recent call last):
+  File "training/trainer.py", line 330, in <module>
+    main()
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/click/core.py", line 1130, in __call__
+    return self.main(*args, **kwargs)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/click/core.py", line 1055, in main
+    rv = self.invoke(ctx)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/click/core.py", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "training/trainer.py", line 322, in main
+    train(**kwargs)
+  File "training/trainer.py", line 276, in train
+    trainer.train()
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/transformers/trainer.py", line 1664, in train
+    return inner_training_loop(
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/transformers/trainer.py", line 2007, in _inner_training_l
+oop
+    self.optimizer.step()
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/torch/optim/lr_scheduler.py", line 68, in wrapper
+    return wrapped(*args, **kwargs)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/torch/optim/optimizer.py", line 140, in wrapper
+    out = func(*args, **kwargs)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/transformers/optimization.py", line 463, in step
+    denom = exp_avg_sq.sqrt().add_(group["eps"])
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 100.00 MiB (GPU 0; 39.43 GiB total capacity; 37.5
+3 GiB already allocated; 2.25 MiB free; 38.14 GiB reserved in total by PyTorch) If reserved memory is >> allocated m
+emory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUD
+A_ALLOC_CONF
+Traceback (most recent call last):
+  File "training/trainer.py", line 330, in <module>
+    main()
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/click/core.py", line 1130, in __call__
+    return self.main(*args, **kwargs)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/click/core.py", line 1055, in main
+    rv = self.invoke(ctx)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/click/core.py", line 1404, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/click/core.py", line 760, in invoke
+    return __callback(*args, **kwargs)
+  File "training/trainer.py", line 322, in main
+    train(**kwargs)
+  File "training/trainer.py", line 276, in train
+    trainer.train()
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/transformers/trainer.py", line 1664, in train
+    return inner_training_loop(
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/transformers/trainer.py", line 2007, in _inner_training_l
+oop
+    self.optimizer.step()
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/torch/optim/lr_scheduler.py", line 68, in wrapper
+    return wrapped(*args, **kwargs)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/torch/optim/optimizer.py", line 140, in wrapper
+    out = func(*args, **kwargs)
+  File "/nas/.conda/envs/dolly/lib/python3.8/site-packages/transformers/optimization.py", line 463, in step
+    denom = exp_avg_sq.sqrt().add_(group["eps"])
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 100.00 MiB (GPU 0; 39.43 GiB total capacity; 37.5
+3 GiB already allocated; 2.25 MiB free; 38.14 GiB reserved in total by PyTorch) If reserved memory is >> allocated m
+emory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUD
+A_ALLOC_CONF
+  0%|                                                                                       | 0/140 [00:01<?, ?it/s]
+(dolly) ubuntu@haca1003:/nas/thuchk/dolly$ sh ./../scripts_sh/valhalla-longformer-base-4096-finetuned-squadv1-A100-b
+s-32.sh ^C
+(dolly) ubuntu@haca1003:/nas/thuchk/dolly$ tmux capture-pane -pS -300 > training_logs
+-bash: training_logs: Is a directory
+(dolly) ubuntu@haca1003:/nas/thuchk/dolly$ tmux capture-pane -pS -300 > training_logs.txt
+
